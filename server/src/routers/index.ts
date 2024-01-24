@@ -1,10 +1,11 @@
 import {Router} from "express";
+import authRouter from "./auth";
+import refreshRouter from "./refresh";
 
-const router = Router();
+const router =  Router();
 
-router.get("/", (req, res)=>{
-    console.log(req.header);
-    return res.status(200).json({msg: "hello from the server"});
-});
+router.use("/auth", authRouter);
+router.use("/refresh", refreshRouter);
+
 
 export default router;
