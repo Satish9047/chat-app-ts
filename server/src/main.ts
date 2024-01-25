@@ -13,7 +13,7 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan("common"));
 
-app.use("/", router);
+app.use("/api/v1", router);
 
 app.listen(config.port, ()=>{
     console.log(`server is running in port: http://localhost:${config.port}`);
