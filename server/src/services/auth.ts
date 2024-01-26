@@ -4,12 +4,14 @@ import { ILogin, IRegister } from "../interface/auth";
 import * as authRepo from "../repositories/auth";
 import config from "../config/config";
 
+//configures
 const saltRounds = config.saltRounds;
 const jwtAccessSecret = config.jwtAccessSecret;
 const jwtRefreshSecret = config.jwtRefreshSecret;
 const accessExpire = config.accessExpire;
 const refreshExpire = config.refreshExpire;
 
+//login handler
 export const loginHandler = async (userInfo: ILogin) => {
 
     try {
@@ -31,7 +33,7 @@ export const loginHandler = async (userInfo: ILogin) => {
 };
 
 
-
+//register handler
 export const registerHandler = async (userInfo: IRegister) => {
 
     try {

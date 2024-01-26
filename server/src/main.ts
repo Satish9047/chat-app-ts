@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 
 const app = express();
 
+//middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
@@ -15,8 +16,10 @@ app.use(helmet());
 app.use(morgan("common"));
 app.use(cookieParser());
 
+//routes
 app.use("/api/v1", router);
 
+//app listener
 app.listen(config.port, ()=>{
     console.log(`server is running in port: http://localhost:${config.port}`);
 });

@@ -5,6 +5,7 @@ import { RegisterSchema, loginSchema } from "../schema/auth";
 
 const authRouter = Router();
 
+//auth routes
 authRouter.post("/login", validateReqBody(loginSchema), authController.loginHandler);
 authRouter.post("/register", validateReqBody(RegisterSchema), authController.registerHandler);
 

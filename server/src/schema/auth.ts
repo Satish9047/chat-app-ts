@@ -1,5 +1,6 @@
 import Joi from "joi";
 
+//schema for verifing register data
 export const RegisterSchema = Joi.object({
     username: Joi.string().min(2).max(50).required()
         .messages({
@@ -41,7 +42,7 @@ export const RegisterSchema = Joi.object({
         })
 });
 
-
+//schema for verifing login data
 export const loginSchema = Joi.object({
     email: Joi.string().email().required()
         .messages({

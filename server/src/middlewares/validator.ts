@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import {Schema} from "joi";
 
+//verify login & register data
 export function validateReqBody(schema:Schema){
     return (req:Request, res:Response, next:NextFunction)=>{
         const {error, value} = schema.validate(req.body);

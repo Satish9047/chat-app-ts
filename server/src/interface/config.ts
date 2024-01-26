@@ -1,4 +1,3 @@
-
 export interface IConfig {
     port: number,
     saltRounds: number,
