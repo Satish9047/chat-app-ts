@@ -1,10 +1,12 @@
-function App() {
+import { FC } from "react";
+import Register from "./pages/register/register";
 
+const App: FC = () => {
   return (
     <>
-      <h1>hello world</h1>
+      <Register />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
