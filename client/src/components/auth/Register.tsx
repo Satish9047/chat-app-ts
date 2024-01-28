@@ -1,13 +1,10 @@
-import { FC } from "react"
-import regImg from "../../assets/img/img-reg.jpg"
-import chatIcon from "../../assets/icon/chat-icon.png"
+import { FC } from 'react';
+import chatIcon from "../../assets/icon/chat-icon.png";
 
-const Register: FC = () => {
+const Register:FC = () => {
   return (
-    <main className=" flex w-screen h-screen">
-
-      <div className=" w-3/12 flex flex-col justify-center items-center">
-        <div className="flex flex-col justify-center items-center">
+    <>
+    <div className="flex flex-col justify-center items-center">
           <figure className=" max-w-52">
             <img src={chatIcon} alt="Login photo" />
           </figure>
@@ -31,16 +28,12 @@ const Register: FC = () => {
             <button className="px-7 py-4 my-6 bg-blue-800 text-white text-md rounded-xl">Register</button>
 
           </form>
+          <div>
+            <p>Already have an Account <span className=" text-blue-900 font-bold">Login Here</span></p>
+          </div>
         </div>
-      </div>
-
-      <figure className="w-9/12 h-300 bg-cover">
-        <img className="w-full h-full object-cover" src={regImg} alt="register image" />
-      </figure>
-
-    </main>
-
+    </>
   )
 }
 
-export default Register;
+export default Register

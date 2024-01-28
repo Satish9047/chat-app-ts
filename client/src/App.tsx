@@ -1,10 +1,10 @@
 import { FC } from "react";
-import Register from "./pages/register/register";
+import Auth from "./pages/auth/Auth";
 
 const App: FC = () => {
   return (
     <>
-      <Register />
+      <Auth />
     </>
   );
 };
