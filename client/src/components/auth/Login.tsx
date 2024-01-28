@@ -1,6 +1,9 @@
 import { FC } from 'react'
 import chatIcon from "../../assets/icon/chat-icon.png"
 const Login: FC = () => {
+    const onRegister = ()=>{
+        console.log("clicked")
+    }
     return (
         <>
             <div className="flex flex-col justify-center items-center">
@@ -19,7 +22,7 @@ const Login: FC = () => {
 
                 </form>
                 <div>
-                    <p>Don't have Account <span className=" text-blue-900 font-bold">Register Here</span></p>
+                    <p>Don't have Account <span className=" text-blue-900 font-bold" onClick={onRegister}>Register Here</span></p>
                 </div>
             </div>
         </>

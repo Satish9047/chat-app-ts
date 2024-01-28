@@ -1,23 +1,32 @@
-import  { FC } from "react";
+import  { FC, JSX, useContext } from "react";
 import regImg from "../../assets/img/img-reg.jpg";
 import Login from "../../components/auth/Login";
 import Register from "../../components/auth/Register";
+import { AuthContext } from "../../contexts/authContext";
 
+export interface IAuthWrapper {
+    children: JSX.Element
+}
 
-const Auth:FC = () => {
-    const isValid = false;
-    return (
-        <main className=" flex w-screen h-screen">
+const AuthWrapper = ({children}:IAuthWrapper)=>{
+    return (<main className=" flex w-screen h-screen">
 
             <div className=" w-3/12 flex flex-col justify-center items-center">
-                {isValid? <Login />: <Register/>}
+                {children}
             </div>
 
             <figure className="w-9/12 h-300 bg-cover">
                 <img className="w-full h-full object-cover" src={regImg} alt="register image" />
             </figure>
-        </main>
-    )
+        </main>)
+}
+
+const Auth:FC = () => {
+    const [{isLoggedIn, ...rest}] = useContext(AuthContext)
+    console.log(isLoggedIn, rest);
+    if (isLoggedIn) return <AuthWrapper><Login/></AuthWrapper>
+
+    return <AuthWrapper><Register/></AuthWrapper>
 }
 
 export default Auth
