@@ -1,13 +1,11 @@
 import { FC } from "react";
-import Auth from "./pages/auth/Auth";
-import {  AuthContextProvider} from "./contexts/authContext";
-
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
 const App: FC = () => {
   return (
     <>
-    <AuthContextProvider>
-      <Auth />
-    </AuthContextProvider>
+      <Login />
+      <Register />
     </>
   );
 };
