@@ -8,8 +8,9 @@ import { ILogin, IRegister } from "../interface/auth";
  * @returns {} object with error or success message
  */
 export const getLogin = async (userData:ILogin):Promise<object> =>{
+    console.log("watch login info",userData);
     const res = await req.post("/auth/login", userData);
-    console.log(res);
+    //console.log(res);
     return res;
 };
 

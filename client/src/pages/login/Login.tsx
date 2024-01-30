@@ -8,7 +8,8 @@ const Login: FC = () => {
     const [userData, setUserData] = useState<ILogin>({email: "", password: ""});
 
     const inputHandler = (event:ChangeEvent<HTMLInputElement>)=>{
-        setUserData((prev)=>({...prev, [event.target.name]: [event.target.value]}));
+        const { name, value } = event.target;
+        setUserData((prev)=>({ ...prev, [name]: value }));
     }
     const handleSubmit = async (event:FormEvent)=>{
         event.preventDefault();
