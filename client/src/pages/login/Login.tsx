@@ -3,6 +3,7 @@ import regImg from "../../assets/img/img-reg.jpg";
 import chatIcon from "../../assets/icon/chat-icon.png";
 import { ILogin } from '../../interface/auth';
 import { getLogin } from '../../services/auth';
+import { Link} from 'react-router-dom';
 
 const Login: FC = () => {
     const [userData, setUserData] = useState<ILogin>({email: "", password: ""});
@@ -11,7 +12,7 @@ const Login: FC = () => {
         const { name, value } = event.target;
         setUserData((prev)=>({ ...prev, [name]: value }));
     }
-    
+
     const handleSubmit = async (event:FormEvent)=>{
         event.preventDefault();
         const res = await getLogin(userData);
@@ -40,7 +41,7 @@ const Login: FC = () => {
 
                         </form>
                         <div>
-                            <p>Don't have Account <span className=" text-blue-900 font-bold">Register Here</span></p>
+                            <p>Don't have Account <span className=" text-blue-900 font-bold"><Link to="/register">Register Here</Link></span></p>
                         </div>
                     </div>
                 </div>
