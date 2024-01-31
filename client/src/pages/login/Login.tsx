@@ -11,17 +11,16 @@ const Login: FC = () => {
         const { name, value } = event.target;
         setUserData((prev)=>({ ...prev, [name]: value }));
     }
+    
     const handleSubmit = async (event:FormEvent)=>{
         event.preventDefault();
         const res = await getLogin(userData);
         console.log(res);
     }
 
-
     return (
         <>
             <main className=" flex w-screen h-screen">
-
                 <div className=" w-3/12 flex flex-col justify-center items-center">
                     <div className="flex flex-col justify-center items-center">
                         <figure className=" max-w-52">
