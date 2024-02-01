@@ -1,8 +1,11 @@
 import { FC } from 'react'
-
+import Navbar from '../../components/navbar/Navbar';
 const Dashboard:FC = () => {
   return (
-    <div>Dashboard</div>
+    <>
+      <Navbar />
+      
+    </>
   )
 }
 
