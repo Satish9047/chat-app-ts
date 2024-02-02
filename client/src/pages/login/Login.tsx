@@ -1,23 +1,23 @@
-import { ChangeEvent, FC, FormEvent, useState } from 'react'
+import { ChangeEvent, FC, FormEvent, useState } from "react";
 import regImg from "../../assets/img/img-reg.jpg";
 import chatIcon from "../../assets/icon/chat-icon.png";
-import { ILogin } from '../../interface/auth';
-import { getLogin } from '../../services/auth';
-import { Link} from 'react-router-dom';
+import { ILogin } from "../../interface/auth";
+import { getLogin } from "../../services/auth";
+import { Link } from "react-router-dom";
 
 const Login: FC = () => {
-    const [userData, setUserData] = useState<ILogin>({email: "", password: ""});
+    const [userData, setUserData] = useState<ILogin>({ email: "", password: "" });
 
-    const inputHandler = (event:ChangeEvent<HTMLInputElement>)=>{
+    const inputHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
-        setUserData((prev)=>({ ...prev, [name]: value }));
-    }
+        setUserData((prev) => ({ ...prev, [name]: value }));
+    };
 
-    const handleSubmit = async (event:FormEvent)=>{
+    const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         const res = await getLogin(userData);
         console.log(res);
-    }
+    };
 
     return (
         <>
@@ -30,18 +30,18 @@ const Login: FC = () => {
                         <form onSubmit={handleSubmit} className="flex flex-col text-sm">
 
                             <label htmlFor="email">Email</label>
-                            <input id="email" name="email" value={userData.email} type="email" onChange={inputHandler} 
-                            className="px-4 py-1 border-b-2 text-lg" />
+                            <input id="email" name="email" value={userData.email} type="email" onChange={inputHandler}
+                                className="px-4 py-1 border-b-2 text-lg" />
 
                             <label htmlFor="password">Password</label>
-                            <input id="password" name="password" value={userData.password} type="password" onChange={inputHandler} 
-                            className="px-4 py-1 border-b-2 text-lg" />
+                            <input id="password" name="password" value={userData.password} type="password" onChange={inputHandler}
+                                className="px-4 py-1 border-b-2 text-lg" />
 
                             <button type="submit" className="px-7 py-4 my-6 bg-blue-800 text-white text-md rounded-xl">Login</button>
 
                         </form>
                         <div>
-                            <p>Don't have Account <span className=" text-blue-900 font-bold"><Link to="/register">Register Here</Link></span></p>
+                            <p>Don&apos;t have Account <span className=" text-blue-900 font-bold"><Link to="/register">Register Here</Link></span></p>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@ const Login: FC = () => {
                 </figure>
             </main>
         </>
-    )
-}
+    );
+};
 
-export default Login
+export default Login;
