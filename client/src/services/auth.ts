@@ -9,20 +9,20 @@ import { ILogin, IRegister } from "../interface/auth";
  * @param userData object{} with user credential
  * @returns {} object with error or success message
  */
-export const getLogin = async (userData:ILogin):Promise<string | object> =>{
-    console.log("watch login info",userData);
+export const getLogin = async (userData: ILogin): Promise<string | object> => {
+    // console.log("watch login info", userData);
     try {
         const res = await req.post("/auth/login", userData);
-        // console.log(res);
-        return res.data;
+        // console.log(res.data);
+        return { data: res.data };
     } catch (error) {
         if ((error instanceof AxiosError)) {
-            // console.error("Response data:", error.response?.data.error);
-            return error.response?.data.error ;
-        } 
+            // console.log("Response data:", error.response?.data.error);
+            return { error: error.response?.data.error };
+        }
         console.error("No response received from the server.");
-        return "No response from the server. Please try again later.";
-    }  
+        return { error: "No response from the server. Please try again later." };
+    }
 };
 
 /**
@@ -31,8 +31,8 @@ export const getLogin = async (userData:ILogin):Promise<string | object> =>{
  * @param userData object{} with user info
  * @returns {} object with error or success message
  */
-export const getRegister = async(userData:IRegister):Promise<object>=>{
+export const getRegister = async (userData: IRegister): Promise<object> => {
     const res = await req.post("/auth/register", userData);
     console.log(res);
     return res;
-}
+};

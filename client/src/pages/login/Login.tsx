@@ -1,12 +1,14 @@
-import { ChangeEvent, FC, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import regImg from "../../assets/img/img-reg.jpg";
 import chatIcon from "../../assets/icon/chat-icon.png";
 import { ILogin } from "../../interface/auth";
 import { getLogin } from "../../services/auth";
 import { Link } from "react-router-dom";
+import { AxiosError } from "axios";
 
-const Login: FC = () => {
+const Login = () => {
     const [userData, setUserData] = useState<ILogin>({ email: "", password: "" });
+    const [LoginResult, setLoginResult] = useState<{ data?: object, error?: object }>({});
 
     const inputHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -15,8 +17,21 @@ const Login: FC = () => {
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
-        const res = await getLogin(userData);
-        console.log(res);
+        try {
+            const res: { data?: object, error?: object } = await getLogin(userData);
+            if ("error" in res) {
+                console.log(res.error);
+                setLoginResult({ error: res });
+            } else {
+                console.log(res.data);
+                setLoginResult({ data: res.data });
+
+            }
+
+        } catch (error) {
+
+            console.log((error instanceof AxiosError), "helloss");
+        }
     };
 
     return (
@@ -38,6 +53,7 @@ const Login: FC = () => {
                                 className="px-4 py-1 border-b-2 text-lg" />
 
                             <button type="submit" className="px-7 py-4 my-6 bg-blue-800 text-white text-md rounded-xl">Login</button>
+                            {/* <div><p>{LoginResult.error}</p></div> */}
 
                         </form>
                         <div>
