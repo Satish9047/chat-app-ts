@@ -17,13 +17,13 @@ export const loginHandler = async (userInfo: ILogin) => {
     try {
         const user = await authRepo.getUser(userInfo.email);
         if (!user) return { error: "invalid user" };
-        
+
         const passwordMatch = await bcrypt.compare(userInfo.password, user.password);
         if (!passwordMatch) return { error: "incorrect password" };
 
-        const accessToken = jwt.sign({id: user.user_id}, jwtAccessSecret, {expiresIn: accessExpire});
-        const refreshToken = jwt.sign({id: user.user_id}, jwtRefreshSecret, {expiresIn: refreshExpire});
-        
+        const accessToken = jwt.sign({ id: user.user_id }, jwtAccessSecret, { expiresIn: accessExpire });
+        const refreshToken = jwt.sign({ id: user.user_id }, jwtRefreshSecret, { expiresIn: refreshExpire });
+
         return { msg: "login successfull", accessToken: accessToken, refreshToken: refreshToken };
 
     } catch (error) {
@@ -39,6 +39,11 @@ export const registerHandler = async (userInfo: IRegister) => {
     try {
         const user = await authRepo.getUser(userInfo.email);
         if (user) return { error: "user already exist !" };
+
+        const userWithEmail = await authRepo.getUserByContact(userInfo.contact);
+        if (userWithEmail) {
+            return { error: "User with this email already exists!" };
+        }
 
         const hashPassword = await bcrypt.hash(userInfo.password, saltRounds);
         userInfo.password = hashPassword;
