@@ -3,9 +3,11 @@ import regImg from "../../assets/img/img-reg.jpg";
 import chatIcon from "../../assets/icon/chat-icon.png";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { getRegister } from "../../services/auth";
+import { useNavigate } from "react-router-dom";
 
 const Register: React.FC = () => {
     const [userInfo, setUserInfo] = useState({ username: "", email: "", contact: "", address: "", password: "" });
+    const navigate = useNavigate();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -18,6 +20,8 @@ const Register: React.FC = () => {
         try {
             const res = await getRegister(userInfo);
             console.log(res, "hello");
+            navigate("/login");
+
         } catch (error) {
             console.log(error);
         }
