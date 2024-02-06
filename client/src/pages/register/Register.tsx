@@ -1,8 +1,27 @@
-import { FC } from 'react'
+// import { FC } from 'react'
 import regImg from "../../assets/img/img-reg.jpg";
 import chatIcon from "../../assets/icon/chat-icon.png";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { getRegister } from "../../services/auth";
 
-const Register: FC = () => {
+const Register: React.FC = () => {
+    const [userInfo, setUserInfo] = useState({ username: "", email: "", contact: "", address: "", password: "" });
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+
+        setUserInfo((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleRegister = async (e: FormEvent) => {
+        e.preventDefault();
+        try {
+            const res = await getRegister(userInfo);
+            console.log(res, "hello");
+        } catch (error) {
+            console.log(error);
+        }
+    };
     return (
         <>
             <main className=" flex w-screen h-screen">
@@ -11,22 +30,22 @@ const Register: FC = () => {
                         <figure className=" max-w-52">
                             <img src={chatIcon} alt="Login photo" />
                         </figure>
-                        <form className="flex flex-col text-sm">
+                        <form onSubmit={handleRegister} className="flex flex-col text-sm">
 
                             <label htmlFor="username">User Name</label>
-                            <input id="username" className="px-4 py-1 border-b-2 text-lg" />
+                            <input id="username" name="username" value={userInfo.username} onChange={handleChange} className="px-4 py-1 border-b-2 text-lg" />
 
                             <label htmlFor="email">Email</label>
-                            <input id="email" className="px-4 py-1 border-b-2 text-lg" />
+                            <input id="email" name="email" type="email" value={userInfo.email} onChange={handleChange} className="px-4 py-1 border-b-2 text-lg" />
 
                             <label htmlFor="contact">Contact</label>
-                            <input id="contact" className="px-4 py-1 border-b-2 text-lg" />
+                            <input id="contact" name="contact" type="tel" value={userInfo.contact} onChange={handleChange} className="px-4 py-1 border-b-2 text-lg" />
 
                             <label htmlFor="address">Address</label>
-                            <input id="address" className="px-4 py-1 border-b-2 text-lg" />
+                            <input id="address" name="address" value={userInfo.address} onChange={handleChange} className="px-4 py-1 border-b-2 text-lg" />
 
                             <label htmlFor="password">Password</label>
-                            <input id="password" className="px-4 py-1 border-b-2 text-lg" />
+                            <input id="password" name="password" type="password" value={userInfo.password} onChange={handleChange} className="px-4 py-1 border-b-2 text-lg" />
 
                             <button className="px-7 py-4 my-6 bg-blue-800 text-white text-md rounded-xl">Register</button>
 
@@ -42,7 +61,7 @@ const Register: FC = () => {
                 </figure>
             </main>
         </>
-    )
-}
+    );
+};
 
-export default Register
+export default Register;

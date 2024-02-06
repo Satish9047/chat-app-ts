@@ -33,6 +33,6 @@ export const getLogin = async (userData: ILogin): Promise<string | object> => {
  */
 export const getRegister = async (userData: IRegister): Promise<object> => {
     const res = await req.post("/auth/register", userData);
-    console.log(res);
+    console.log(res, "from the service");
     return res;
 };

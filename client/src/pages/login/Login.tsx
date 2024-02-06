@@ -25,7 +25,6 @@ const Login = () => {
             } else {
                 console.log(res.data);
                 setLoginResult({ data: res.data });
-
             }
 
         } catch (error) {
