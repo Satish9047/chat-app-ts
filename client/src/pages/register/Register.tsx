@@ -1,9 +1,8 @@
-// import { FC } from 'react'
 import regImg from "../../assets/img/img-reg.jpg";
 import chatIcon from "../../assets/icon/chat-icon.png";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { getRegister } from "../../services/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register: React.FC = () => {
     const [userInfo, setUserInfo] = useState({ username: "", email: "", contact: "", address: "", password: "" });
@@ -55,7 +54,7 @@ const Register: React.FC = () => {
 
                         </form>
                         <div>
-                            <p>Already have an Account <span className=" text-blue-900 font-bold">Login Here</span></p>
+                            <p>Already have an Account <Link to="/login" className=" text-blue-900 font-bold">Login Here</Link></p>
                         </div>
                     </div>
                 </div>
