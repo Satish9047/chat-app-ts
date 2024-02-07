@@ -3,12 +3,13 @@ import regImg from "../../assets/img/img-reg.jpg";
 import chatIcon from "../../assets/icon/chat-icon.png";
 import { ILogin } from "../../interface/auth";
 import { getLogin } from "../../services/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
 
 const Login = () => {
     const [userData, setUserData] = useState<ILogin>({ email: "", password: "" });
     const [LoginResult, setLoginResult] = useState<{ data?: object, error?: object }>({});
+    const navigate = useNavigate();
 
     const inputHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -25,10 +26,9 @@ const Login = () => {
             } else {
                 console.log(res.data);
                 setLoginResult({ data: res.data });
+                navigate("/");
             }
-
         } catch (error) {
-
             console.log((error instanceof AxiosError), "helloss");
         }
     };
