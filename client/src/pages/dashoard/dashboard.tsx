@@ -1,10 +1,20 @@
-import { FC } from 'react'
+import { useEffect } from 'react';
 import Navbar from '../../components/navbar/Navbar';
-const Dashboard:FC = () => {
+import { getUserInfo } from '../../services/auth';
+
+
+const Dashboard: React.FC = () => {
+  useEffect(() => {
+    const getUser = async () => {
+      const res = await getUserInfo();
+      console.log(res);
+    };
+    getUser();
+  }, [])
   return (
     <>
       <Navbar />
-      
+
     </>
   )
 }

@@ -4,6 +4,24 @@ import req from "../config/config";
 import { ILogin, IRegister } from "../interface/auth";
 
 /**
+ * get user info
+ * 
+ * @returns {} with data or error
+ */
+export const getUserInfo = async () => {
+    try {
+        const res = await req.get("/user");
+        return { data: res.data };
+    } catch (error) {
+        if ((error instanceof AxiosError)) {
+            return { error: error.response?.data.error };
+        }
+        console.error("No response received from the server.");
+        return { error: "No response from the server. Please try again later." };
+    }
+};
+
+/**
  * sending login request to api
  * 
  * @param userData object{} with user credential
