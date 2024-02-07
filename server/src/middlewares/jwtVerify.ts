@@ -3,8 +3,8 @@ import config from "../config/config";
 import { Request, Response, NextFunction } from "express";
 
 export const jwtVerify = (req: Request, res: Response, next: NextFunction) => {
-    console.log(req.cookies, "jwt verify room");
-    const accessToken = req.cookies;
+    // console.log(req.cookies, "jwt verify room");
+    const accessToken = req.cookies.accessToken;
 
     try {
         if (!accessToken) {
