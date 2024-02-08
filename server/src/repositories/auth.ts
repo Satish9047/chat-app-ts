@@ -9,6 +9,7 @@ export const getUser = async (email: string) => {
     return user;
 };
 
+
 export const getUserByContact = async (contact: number) => {
     const user = prisma.user.findFirst({ where: { contact: contact } });
     return user;
