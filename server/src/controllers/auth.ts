@@ -19,7 +19,6 @@ export const loginHandler = async (req: Request, res: Response) => {
         console.log(error);
         return res.status(500).json({ error: "error while login" });
     }
-
 };
 
 //register controller
