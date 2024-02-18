@@ -6,15 +6,19 @@ import { getUserInfo } from '../../services/auth';
 const Dashboard: React.FC = () => {
   useEffect(() => {
     const getUser = async () => {
-      const res = await getUserInfo();
-      console.log(res);
+      try {
+        const res = await getUserInfo();
+        console.log(res);
+
+      } catch (error) {
+        console.log(error);
+      }
     };
     getUser();
   }, [])
   return (
     <>
       <Navbar />
-
     </>
   )
 }

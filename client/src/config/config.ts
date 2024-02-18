@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
+// import { redirect } from "react-router-dom";
 
 const req = axios.create({
     baseURL: "http://localhost:8080/api/v1",
@@ -21,9 +22,18 @@ req.interceptors.response.use(
 
             } catch (error) {
                 console.log(error);
-                window.location.replace("/src/pages/login/login.tsx");
+                // redirect("/login");
+                window.location.href = "/login";
+
             }
         }
+        if (error.response?.status === 400) {
+            console.log(error, "fromr the intercepter");
+            // redirect("/login");
+            window.location.href = "/login";
+        }
+        throw error;
+
     }
 )
 

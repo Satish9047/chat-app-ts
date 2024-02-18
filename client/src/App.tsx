@@ -5,6 +5,8 @@ import Register from "./pages/register/Register";
 import Dashboard from "./pages/dashoard/Dashboard";
 
 const App: FC = () => {
+  console.log("hello  from app")
+
   return (
     <>
       <Routes>
